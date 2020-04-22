@@ -7,6 +7,7 @@ use extas\components\conditions\ConditionRepository;
 use extas\components\parsers\Parser;
 use extas\components\parsers\ParserCurrentDateTime;
 use extas\components\parsers\ParserNullValue;
+use extas\components\parsers\ParserSample;
 use extas\components\parsers\ParserSimpleReplace;
 use extas\components\SystemContainer;
 use extas\interfaces\conditions\IConditionRepository;
@@ -124,5 +125,11 @@ class ParserTest extends TestCase
             'Test is ok',
             $parser->parse('Test @test.status')
         );
+    }
+
+    public function testSample()
+    {
+        $sample = new ParserSample();
+        $this->assertTrue($sample instanceof ParserSample);
     }
 }
