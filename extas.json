@@ -1,0 +1,72 @@
+{
+  "name": "extas/parsers",
+  "package_classes": [
+    {
+      "interface": "extas\\interfaces\\parsers\\IParserRepository",
+      "class": "extas\\components\\parsers\\ParserRepository"
+    },
+    {
+      "interface": "extas\\interfaces\\parsers\\IParserSampleRepository",
+      "class": "extas\\components\\parsers\\ParserSampleRepository"
+    }
+  ],
+  "plugins": [
+    {
+      "class": [
+        "extas\\components\\plugins\\PluginInstallParsers",
+        "extas\\components\\plugins\\PluginInstallParsersSamples"
+      ],
+      "stage": "extas.install"
+    },
+    {
+      "class": "extas\\components\\plugins\\repositories\\PluginFieldSampleName",
+      "stage": "extas.parsers.create.before"
+    }
+  ],
+
+  "parsers_samples": [
+    {
+      "name": "datetime",
+      "title": "Current date and time",
+      "description": "Place current date and time",
+      "class": "extas\\components\\parsers\\ParserCurrentDateTime",
+      "value": "/\\@date\\((.*?)\\)/m",
+      "condition": "regex",
+      "parameters": {
+        "pattern": {
+          "name": "pattern",
+          "value": "/\\@date\\((.*?)\\)/m"
+        }
+      }
+    },
+    {
+      "name": "null",
+      "title": "Null value",
+      "description": "Place null value",
+      "class": "extas\\components\\parsers\\ParserNullValue",
+      "value": "@null",
+      "condition": "=",
+      "parameters": {}
+    },
+    {
+      "name": "simple_replace",
+      "title": "Simple replace",
+      "description": "Just replace text like @<param> with the param value",
+      "class": "extas\\components\\parsers\\ParserSimpleReplace",
+      "value": "",
+      "condition": "!@",
+      "parameters": {
+        "param_name": {
+          "name": "param_name",
+          "title": "Имя параметра",
+          "description": "Имя параметра для замены"
+        },
+        "marker": {
+          "name": "marker",
+          "title": "Маркер",
+          "description": "Маркер для поиска в тексте. По умолчанию равен имени параметра."
+        }
+      }
+    }
+  ]
+}
