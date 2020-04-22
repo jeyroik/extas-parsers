@@ -104,6 +104,13 @@ class ParserTest extends TestCase
             ],
             $parser->parse(['Now is @date(Y-m-d)', 'Now is @date(Y/m/d)'])
         );
+
+        $this->assertEquals(
+            'Now is not a date@',
+            $parser->parse('Now is not a date@')
+        );
+
+        $this->assertEquals($parser, $parser->parse($parser));
     }
 
     public function testSimpleReplace()
