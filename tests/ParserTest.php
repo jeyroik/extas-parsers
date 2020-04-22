@@ -132,6 +132,12 @@ class ParserTest extends TestCase
             'Test is ok',
             $parser->parse('Test @test.status')
         );
+
+        $parser->setParameterValue(ParserSimpleReplace::FIELD__PARAM_NAME, 'unknown');
+        $this->assertEquals(
+            'Test @test.status',
+            $parser->parse('Test @test.status')
+        );
     }
 
     public function testSample()
