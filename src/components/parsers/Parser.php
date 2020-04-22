@@ -20,7 +20,11 @@ class Parser extends ParserSample implements IParser
      */
     public function parse($value)
     {
-        $parseDispatcher = $this->buildClassWithParameters($this->getParametersValues());
+        $thisData = $this->__toArray();
+        unset($thisData[static::FIELD__PARAMETERS]);
+        unset($thisData[static::FIELD__CLASS]);
+        $params = array_merge($thisData, $this->getParametersValues());
+        $parseDispatcher = $this->buildClassWithParameters($params);
 
         return $parseDispatcher($value);
     }
