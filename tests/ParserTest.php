@@ -105,10 +105,10 @@ class ParserTest extends TestCase
                 ParserSimpleReplace::FIELD__PARAM_NAME => [
                     ISampleParameter::FIELD__NAME => ParserSimpleReplace::FIELD__PARAM_NAME,
                     ISampleParameter::FIELD__VALUE => 'test'
-                ],
-                'test' => [
-                    'status' => 'is ok'
                 ]
+            ],
+            'test' => [
+                'status' => 'is ok'
             ]
         ]);
 
