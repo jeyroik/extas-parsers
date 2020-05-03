@@ -42,7 +42,7 @@ class ParserOneOf extends Item implements IParseDispatcher
     {
         $list = explode($delimiter, $listOfVariants);
         foreach ($list as $i => $v) {
-            $list[$i] = trim($v);
+            $list[$i] = trim(trim($v), '"');
         }
 
         return $list;
