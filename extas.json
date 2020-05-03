@@ -67,6 +67,28 @@
           "description": "Маркер для поиска в тексте. По умолчанию равен имени параметра."
         }
       }
+    },
+    {
+      "name": "one_of",
+      "title": "One of",
+      "description": "Get on value of a list",
+      "class": "extas\\components\\parsers\\ParserOneOf",
+      "value": "oneof",
+      "condition": "~",
+      "parameters": {
+        "pattern": {
+          "name": "pattern",
+          "title": "Паттерн",
+          "description": "Паттерн для поиска в значении списка для замены.",
+          "value": "\\@oneof\\((.*)\\)"
+        },
+        "delimiter": {
+          "name": "delimiter",
+          "title": "Разделитель",
+          "description": "Разделитель элементов в списке для замены.",
+          "value": ","
+        }
+      }
     }
   ]
 }
