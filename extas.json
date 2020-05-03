@@ -80,7 +80,7 @@
           "name": "pattern",
           "title": "Паттерн",
           "description": "Паттерн для поиска в значении списка для замены.",
-          "value": "\\@oneof\\((.*)\\)"
+          "value": "/\\@oneof\\((.*)\\)/"
         },
         "delimiter": {
           "name": "delimiter",
