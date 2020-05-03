@@ -77,7 +77,7 @@ class ParserOneOf extends Item implements IParseDispatcher
      */
     protected function getPattern(): string
     {
-        return $this->config[static::FIELD__PATTERN] ?? '\@oneof\((.*)\)';
+        return $this->config[static::FIELD__PATTERN] ?? '/\@oneof\((.*)\)/';
     }
 
     /**
