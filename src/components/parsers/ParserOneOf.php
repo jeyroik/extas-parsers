@@ -27,7 +27,7 @@ class ParserOneOf extends Item implements IParseDispatcher
                 $this->getDelimiter()
             );
             $rand = mt_rand(0, count($variants)-1);
-            return preg_replace($this->getPattern(), $rand, $value);
+            return preg_replace($this->getPattern(), $variants[$rand], $value);
         }
 
         return $value;
