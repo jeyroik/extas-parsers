@@ -8,6 +8,14 @@
     {
       "interface": "extas\\interfaces\\parsers\\IParserSampleRepository",
       "class": "extas\\components\\parsers\\ParserSampleRepository"
+    },
+    {
+      "interface": "parserRepository",
+      "class": "extas\\components\\parsers\\ParserRepository"
+    },
+    {
+      "interface": "parserSampleRepository",
+      "class": "extas\\components\\parsers\\ParserSampleRepository"
     }
   ],
   "plugins": [
