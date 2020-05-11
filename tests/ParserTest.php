@@ -150,8 +150,8 @@ class ParserTest extends TestCase
 
         $this->assertTrue(
             in_array(
-                $parser->parse('test is @oneof("smile", "is ok", "\"working\"!")'),
-                ['test is smile', 'test is ok', 'test is \"working\"!']
+                $parser->parse('test is @oneof(smile,is ok)'),
+                ['test is smile', 'test is ok']
             )
         );
 

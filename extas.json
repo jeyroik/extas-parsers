@@ -31,7 +31,19 @@
       "stage": "extas.parsers.create.before"
     }
   ],
-
+  "extensions": [
+    {
+      "class": "extas\\components\\extensions\\ExtensionRepositoryGet",
+      "interface": "extas\\interfaces\\extensions\\IExtensionRepositoryGet",
+      "subject": "*",
+      "methods": [
+        "parserRepository",
+        "extas\\interfaces\\parsers\\IParserRepository",
+        "parserSampleRepository",
+        "extas\\interfaces\\parsers\\IParserSampleRepository"
+      ]
+    }
+  ],
   "parsers_samples": [
     {
       "name": "datetime",
