@@ -143,7 +143,7 @@ class ParserTest extends TestCase
         $this->assertTrue(
             in_array(
                 $parser->parse('test is @oneof(smile,is ok)'),
-                ['test is smile', 'test is ok']
+                ['test is smile', 'test is is ok']
             ),
             'Current result: ' . $parser->parse('test is @oneof(smile,is ok)')
         );
