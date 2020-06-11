@@ -1,21 +1,20 @@
 <?php
 namespace tests\parsers;
 
-use extas\components\conditions\Condition;
-use extas\components\conditions\ConditionEqual;
+use extas\interfaces\samples\parameters\ISampleParameter;
+
 use extas\components\conditions\ConditionRepository;
+use extas\components\conditions\TSnuffConditions;
 use extas\components\parsers\Parser;
 use extas\components\parsers\ParserCurrentDateTime;
 use extas\components\parsers\ParserNullValue;
 use extas\components\parsers\ParserOneOf;
 use extas\components\parsers\ParserSample;
 use extas\components\parsers\ParserSimpleReplace;
-use extas\components\SystemContainer;
-use extas\interfaces\conditions\IConditionRepository;
-use extas\interfaces\repositories\IRepository;
-use extas\interfaces\samples\parameters\ISampleParameter;
+use extas\components\repositories\TSnuffRepository;
+
+use Dotenv\Dotenv;
 use PHPUnit\Framework\TestCase;
-use tests\ParserIsOk;
 
 /**
  * Class ParserTest
@@ -25,24 +24,22 @@ use tests\ParserIsOk;
  */
 class ParserTest extends TestCase
 {
-    protected ?IRepository $condRepo = null;
+    use TSnuffRepository;
+    use TSnuffConditions;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $env = \Dotenv\Dotenv::create(getcwd() . '/tests/');
+        $env = Dotenv::create(getcwd() . '/tests/');
         $env->load();
-        $this->condRepo = new ConditionRepository();
-
-        SystemContainer::addItem(
-            IConditionRepository::class,
-            ConditionRepository::class
-        );
+        $this->registerSnuffRepos([
+            'conditionRepository' => ConditionRepository::class
+        ]);
     }
 
     public function tearDown(): void
     {
-        $this->condRepo->delete([Condition::FIELD__NAME => 'eq']);
+        $this->unregisterSnuffRepos();
     }
 
     public function testCanParse()
@@ -52,12 +49,7 @@ class ParserTest extends TestCase
             Parser::FIELD__CONDITION => '='
         ]);
 
-        $this->condRepo->create(new Condition([
-            Condition::FIELD__NAME => 'eq',
-            Condition::FIELD__CLASS => ConditionEqual::class,
-            Condition::FIELD__ALIASES => ['eq', '=']
-        ]));
-
+        $this->createSnuffCondition('equal');
         $this->assertTrue($parser->canParse('@test'), 'Can not parse @test');
     }
 
