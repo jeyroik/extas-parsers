@@ -1,20 +1,19 @@
 <?php
-namespace extas\components\plugins;
+namespace extas\components\plugins\uninstall;
 
 use extas\components\parsers\Parser;
-use extas\interfaces\parsers\IParserRepository;
 
 /**
- * Class PluginInstallParsers
+ * Class UninstallParsers
  *
- * @package extas\components\plugins
+ * @package extas\components\plugins\uninstall
  * @author jeyroik@gmail.com
  */
-class PluginInstallParsers extends PluginInstallDefault
+class UninstallParsers extends UninstallSection
 {
     protected string $selfSection = 'parsers';
     protected string $selfName = 'parser';
-    protected string $selfRepositoryClass = IParserRepository::class;
+    protected string $selfRepositoryClass = 'parserRepository';
     protected string $selfUID = Parser::FIELD__NAME;
     protected string $selfItemClass = Parser::class;
 }
