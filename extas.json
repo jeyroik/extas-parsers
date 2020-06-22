@@ -1,31 +1,39 @@
 {
   "name": "extas/parsers",
-  "package_classes": [
+  "index": {
+    "init": ["repositories"],
+    "install": ["parsers_samples"],
+    "uninstall": ["parsers_samples"]
+  },
+  "plugins_install": [
     {
-      "interface": "extas\\interfaces\\parsers\\IParserRepository",
-      "class": "extas\\components\\parsers\\ParserRepository"
+      "name": "parser",
+      "repository": "parserRepository",
+      "class": "extas\\components\\parsers\\Parser",
+      "section": "parsers"
     },
     {
-      "interface": "extas\\interfaces\\parsers\\IParserSampleRepository",
-      "class": "extas\\components\\parsers\\ParserSampleRepository"
+      "name": "parser sample",
+      "repository": "parserSampleRepository",
+      "class": "extas\\components\\parsers\\ParserSample",
+      "section": "parsers"
+    }
+  ],
+  "repositories": [
+    {
+      "name": "parsers",
+      "scope": "extas",
+      "pk": "name",
+      "class": "extas\\components\\parsers\\Parser"
     },
     {
-      "interface": "parserRepository",
-      "class": "extas\\components\\parsers\\ParserRepository"
-    },
-    {
-      "interface": "parserSampleRepository",
-      "class": "extas\\components\\parsers\\ParserSampleRepository"
+      "name": "parsers_samples",
+      "scope": "extas",
+      "pk": "name",
+      "class": "extas\\components\\parsers\\ParserSample"
     }
   ],
   "plugins": [
-    {
-      "class": [
-        "extas\\components\\plugins\\PluginInstallParsers",
-        "extas\\components\\plugins\\PluginInstallParsersSamples"
-      ],
-      "stage": "extas.install"
-    },
     {
       "class": "extas\\components\\plugins\\repositories\\PluginFieldSampleName",
       "stage": "extas.parsers.create.before"
@@ -33,14 +41,12 @@
   ],
   "extensions": [
     {
-      "class": "extas\\components\\extensions\\ExtensionRepositoryGet",
-      "interface": "extas\\interfaces\\extensions\\IExtensionRepositoryGet",
+      "class": "extas\\components\\extensions\\ExtensionRepositoryDescription",
+      "interface": "extas\\interfaces\\extensions\\IExtensionRepositoryDescription",
       "subject": "*",
       "methods": [
         "parserRepository",
-        "extas\\interfaces\\parsers\\IParserRepository",
-        "parserSampleRepository",
-        "extas\\interfaces\\parsers\\IParserSampleRepository"
+        "parserSampleRepository"
       ]
     }
   ],
