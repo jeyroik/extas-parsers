@@ -1,6 +1,8 @@
 <?php
 namespace tests\parsers;
 
+use extas\components\conditions\Condition;
+use extas\components\repositories\TSnuffRepositoryDynamic;
 use extas\interfaces\samples\parameters\ISampleParameter;
 
 use extas\components\conditions\ConditionRepository;
@@ -25,6 +27,7 @@ use PHPUnit\Framework\TestCase;
 class ParserTest extends TestCase
 {
     use TSnuffRepository;
+    use TSnuffRepositoryDynamic;
     use TSnuffConditions;
 
     protected function setUp(): void
@@ -32,8 +35,8 @@ class ParserTest extends TestCase
         parent::setUp();
         $env = Dotenv::create(getcwd() . '/tests/');
         $env->load();
-        $this->registerSnuffRepos([
-            'conditionRepository' => ConditionRepository::class
+        $this->createSnuffDynamicRepositories([
+            ['conditions', 'name', Condition::class]
         ]);
     }
 
